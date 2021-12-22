@@ -5,7 +5,7 @@
 * [Git Guide](https://docs.github.com/en/get-started/using-git/about-git)
 * [GitHub Flow Guide](https://docs.github.com/en/get-started/quickstart/github-flow)
 * [Git Download](https://git-scm.com/downloads)
-* [GitHub Desktop Download](https://git-scm.com/downloads) (recommended but not required)
+* [GitHub Desktop Download](https://desktop.github.com/) (recommended but not required)
 
 ### Java Development
 * [Baeldung's Java “Back to Basics” Tutorial](https://www.baeldung.com/java-tutorial)
