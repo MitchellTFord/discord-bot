@@ -31,7 +31,7 @@ cd discord-bot
 ## Resources
 ### Recommended Software
 * [IntelliJ IDEA](https://www.jetbrains.com/idea/)
-* [GitHub Desktop](https://git-scm.com/downloads)
+* [GitHub Desktop](https://desktop.github.com/) (recommended but not required)
 
 ### Git and GitHub
 * [Git Guide](https://docs.github.com/en/get-started/using-git/about-git)
