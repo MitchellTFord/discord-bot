@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.6.2'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id 'jacoco'
 }
 
 group = 'com.mitchelltford'
@@ -35,6 +36,16 @@ dependencies {
 	testImplementation 'io.projectreactor:reactor-test'
 }
 
+jacoco {
+	toolVersion = "0.8.7"
+	reportsDir = file("$buildDir/jacoco")
+}
+
 test {
 	useJUnitPlatform()
+	finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+	dependsOn test
 }
