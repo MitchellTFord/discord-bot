@@ -28,6 +28,16 @@ cd discord-bot
 .\gradlew bootRun
 ```
 
+### Generate & View Code Coverage Report Using JaCoCo
+```shell
+# run the coverage report by either of the following commands in the terminal
+./gradlew test
+#or 
+./gradlew jacocoTestReport
+# You can find the report by navigating to the project directory, 
+# and under build/jacoco/test/html you will find the index.html to view the report
+```
+
 ## Resources
 ### Recommended Software
 * [IntelliJ IDEA](https://www.jetbrains.com/idea/)
