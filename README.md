@@ -36,7 +36,7 @@ cd discord-bot
 # Generate report without re-running tests
 ./gradlew jacocoTestReport
 
-# You can find the report under build/jacoco/test/html/index.html
+# You can view the report under build/jacoco/test/html/index.html
 ```
 
 ## Resources
