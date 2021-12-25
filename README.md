@@ -30,12 +30,13 @@ cd discord-bot
 
 ### Generate & View Code Coverage Report Using JaCoCo
 ```shell
-# run the coverage report by either of the following commands in the terminal
+# Run unit tests and generate report
 ./gradlew test
-#or 
+
+# Generate report without re-running tests
 ./gradlew jacocoTestReport
-# You can find the report by navigating to the project directory, 
-# and under build/jacoco/test/html you will find the index.html to view the report
+
+# You can find the report under build/jacoco/test/html/index.html
 ```
 
 ## Resources
