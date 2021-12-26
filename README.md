@@ -28,6 +28,17 @@ cd discord-bot
 .\gradlew bootRun
 ```
 
+### Generate & View Code Coverage Report Using JaCoCo
+```shell
+# Run unit tests and generate report
+./gradlew test
+
+# Generate report without re-running tests
+./gradlew jacocoTestReport
+
+# You can view the report under build/jacoco/test/html/index.html
+```
+
 ## Resources
 ### Recommended Software
 * [IntelliJ IDEA](https://www.jetbrains.com/idea/)
