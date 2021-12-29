@@ -11,7 +11,7 @@ import discord4j.core.DiscordClientBuilder;
 public class GatewayDiscordClientConfig {
 
   @Bean
-  public GatewayDiscordClient gatewayDiscordConfig(@Value("${bot.token}") String token) {
+  public GatewayDiscordClient gatewayDiscordClient(@Value("${bot.token}") String token) {
     return DiscordClientBuilder.create(token).build().login().block();
   }
 
