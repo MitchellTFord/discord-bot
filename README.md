@@ -1,7 +1,7 @@
 # discord-bot
 
 ## Getting Started
-### Install Java (JDK) & Set-up Environmental Variables
+### Install Java (JDK) & Set-up Environmental Variables (windows)
 ```shell
 # Set Environmental Variables - JDK
 Navigate to environmental variables -> system variables (bottom pane) -> left-click path -> edit -> new -> paste in your path (example: C:\Program Files\Java\YOUR_JDK_HERE\bin)
@@ -9,6 +9,10 @@ Navigate to environmental variables -> system variables (bottom pane) -> left-cl
 # Set JAVA_HOME
 Navigate back to System variables -> new -> variable name is JAVA_HOME -> variable value is C:\Program Files\Java\YOUR_JDK_HERE
   ```
+### Install Java (JDK) & Set-up Environmental Variables (windows)
+```shell
+coming soon
+```
 
 ### Cloning this Repository
 ```shell
