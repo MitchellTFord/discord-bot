@@ -13,8 +13,8 @@ public class GatewayDiscordClientConfig {
 
   @Bean
   public GatewayDiscordClient gatewayDiscordConfig() {
-    client = DiscordClientBuilder.create("***Token Goes Here***").build().login().block();
-    client.onDisconnect().block();
+//    client = DiscordClientBuilder.create("***Token Goes Here***").build().login().block();
+//    client.onDisconnect().block();
     return client;
   }
 
