@@ -9,10 +9,6 @@ Navigate to environmental variables -> system variables (bottom pane) -> left-cl
 # Set JAVA_HOME
 Navigate back to System variables -> new -> variable name is JAVA_HOME -> variable value is C:\Program Files\Java\YOUR_JDK_HERE
   ```
-### Install Java (JDK) & Set-up Environmental Variables (windows)
-```shell
-coming soon
-```
 
 ### Cloning this Repository
 ```shell
