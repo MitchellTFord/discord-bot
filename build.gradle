@@ -3,6 +3,9 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 	id 'jacoco'
+
+	// spotless
+	id 'com.diffplug.spotless' version "6.1.0"
 }
 
 group = 'com.mitchelltford'
@@ -20,10 +23,19 @@ repositories {
 	maven {
 		url 'https://m2.dv8tion.net/releases'
 	}
+
+	// spotless
+	    maven {
+      url 'https://plugins.gradle.org/m2/'
+    }
 }
 
 dependencies {
 	// This dependency is here as a way to mitigate CVE-2021-44228 until a new version of Spring is released
+
+	// spotless
+	implementation "com.diffplug.spotless:spotless-plugin-gradle:6.1.0"
+
 	implementation 'org.apache.logging.log4j:log4j-core:2.17.1'
 
 	implementation 'com.discord4j:discord4j-core:3.2.1'
@@ -56,4 +68,24 @@ test {
 
 jacocoTestReport {
 	dependsOn test
+}
+
+// spotless
+compileJava {
+	dependsOn spotlessApply
+}
+
+spotless {
+  java {
+    // Use the default importOrder configuration
+    importOrder()
+    // optional: instead of specifying import groups directly you can specify a config file
+    // export config file: https://github.com/diffplug/spotless/blob/main/ECLIPSE_SCREENSHOTS.md#creating-spotlessimportorder
+
+    removeUnusedImports()
+
+    googleJavaFormat() // has its own section below
+
+    licenseHeader '/* (C) $YEAR */' // or licenseHeaderFile
+  }
 }
