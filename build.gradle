@@ -23,11 +23,6 @@ repositories {
 	maven {
 		url 'https://m2.dv8tion.net/releases'
 	}
-
-	// spotless
-	    maven {
-      url 'https://plugins.gradle.org/m2/'
-    }
 }
 
 dependencies {
