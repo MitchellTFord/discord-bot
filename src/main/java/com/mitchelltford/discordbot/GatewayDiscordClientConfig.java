@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Profile;
 public class GatewayDiscordClientConfig {
 
   @Bean
-  public GatewayDiscordClient gatewayDiscordConfig(@Value("${bot.token}") String token) {
+  public GatewayDiscordClient gatewayDiscordClient(@Value("${bot.token}") String token) {
     return DiscordClientBuilder.create(token).build().login().block();
   }
 
