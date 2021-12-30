@@ -79,8 +79,6 @@ spotless {
   java {
     // Use the default importOrder configuration
     importOrder()
-    // optional: instead of specifying import groups directly you can specify a config file
-    // export config file: https://github.com/diffplug/spotless/blob/main/ECLIPSE_SCREENSHOTS.md#creating-spotlessimportorder
 
     removeUnusedImports()
 
