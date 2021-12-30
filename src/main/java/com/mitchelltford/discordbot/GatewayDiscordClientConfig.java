@@ -5,9 +5,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Bean;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.DiscordClientBuilder;
+import org.springframework.context.annotation.Profile;
 
 
 @Configuration
+@Profile("!test")
 public class GatewayDiscordClientConfig {
 
   @Bean
