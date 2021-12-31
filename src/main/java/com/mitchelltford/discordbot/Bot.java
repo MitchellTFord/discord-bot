@@ -27,45 +27,48 @@ public class Bot {
         .subscribe(event -> {
           // handle deez nutz
 
-          Map<String, Command> commands = new HashMap<>();
-          commands.put("ping", event -> event.getMessage().getChannel()
-              .flatMap(channel -> channel.createMessage("Pong!")).then());
+//          For future possible improvements (i.e. making commands more modular)
+//          Map<String, Command> commands = new HashMap<>();
+//          commands.put("ping", event -> event.getMessage().getChannel()
+//              .flatMap(channel -> channel.createMessage("Pong!")).then());
+
           //Upon a message event in Discord the string will be set to the Discord message
           String userMsg = event.getMessage().getContent();
+          System.out.println("Message Read: "+userMsg);
 
-          //Gets the first character of the message and continues if the first character is a '!'
-          for(final Map.Entry<String, Command> entry : commands.entrySet()) {
-            if (userMsg.startsWith(PREFIX + entry.getKey())) {
-              entry.getValue().execute(event);
-              break;
-              //String[] temp = userMsg.split("(?<=!)\\w+/"); //String array that contains the command (i.e. whatever is after the '!')
-//              String text = userMsg.substring(PREFIX.length(), userMsg.length());
-//              String[] splitText = text.split("\\s");
-//              if (splitText.length == 0)
-//                return;
-//              String commandKey = splitText[0];
-//              String[] args = Arrays.copyOfRange(splitText, 1, splitText.length);
-              //String[] args = userMsg.split("(?<=\\s)\\w+/g"); //String that contains everything after the command (i.e. words that has a space before it)
-//              System.out.println("Command Key = " + commandKey);
-//            switch (commandKey.toLowerCase()) {
-//
-//              case "play":
-//                if (args.length > 1) {
-//                  System.out.println("Playing Music");
-//                }
-//                else {
-//                  String songToPlay = "";
-//                  for (int i = 1; i < args.length; i++)
-//                    songToPlay = songToPlay.concat(args[i] + " ");
-//                  String finalSongToPlay = songToPlay;
-//                  event.getMessage().getChannel().flatMap(channel -> channel.createMessage("Playing: "+ finalSongToPlay));
-//                }
-//                break;
-//
-//              case "ping":
-//                System.out.println("Pong?");
-//                event.getMessage().getChannel().flatMap(channel -> channel.createMessage("Pong!"));
-//                break;
+          if (userMsg.startsWith(PREFIX)) {
+              String text = userMsg.substring(PREFIX.length(), userMsg.length()); //String of message without prefix
+              String[] splitText = text.split("\\s"); //Splitting text with blank spaces as delimiter
+              if (splitText.length == 0)
+                return;
+              String commandKey = splitText[0];
+              System.out.println("Command Key = " + commandKey);
+              String[] args = Arrays.copyOfRange(splitText, 1, splitText.length); //String array that hold args after commandKey
+              System.out.println("Args = "+ Arrays.toString(args));
+            switch (commandKey.toLowerCase()) {
+
+              case "play":
+                if (args.length < 1) {
+                  System.out.println("Resuming Music");
+                  event.getMessage().getChannel()
+                      .flatMap(channel -> channel.createMessage("Resuming Music!")).subscribe();
+                }
+                else {
+                  String songToPlay = "";
+                  for (String i : args)
+                    songToPlay = songToPlay.concat(i + " ");
+                  String finalSongToPlay = songToPlay;
+                  System.out.println("Playing: "+finalSongToPlay);
+                  event.getMessage().getChannel()
+                      .flatMap(channel -> channel.createMessage("Playing: "+ finalSongToPlay)).subscribe();
+                }
+                break;
+
+              case "ping":
+                System.out.println("Pong?");
+                event.getMessage().getChannel()
+                    .flatMap(channel -> channel.createMessage("Pong!")).subscribe();
+                break;
 //            }
             }
           }
