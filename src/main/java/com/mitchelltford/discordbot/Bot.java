@@ -3,10 +3,6 @@ package com.mitchelltford.discordbot;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine.Command;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -14,37 +10,31 @@ import reactor.core.publisher.Mono;
 
 @Service
 public class Bot {
+
   private static final String PREFIX = "!";
-
-
-  interface Command{
-    Mono<Void> execute(MessageCreateEvent event);
-  }
 
   @Autowired
   Bot(GatewayDiscordClient client) {
     client.on(MessageCreateEvent.class)
         .subscribe(event -> {
-          // handle deez nutz
-
-//          For future possible improvements (i.e. making commands more modular)
-//          Map<String, Command> commands = new HashMap<>();
-//          commands.put("ping", event -> event.getMessage().getChannel()
-//              .flatMap(channel -> channel.createMessage("Pong!")).then());
 
           //Upon a message event in Discord the string will be set to the Discord message
           String userMsg = event.getMessage().getContent();
-          System.out.println("Message Read: "+userMsg);
+          System.out.println("Message Read: " + userMsg);
 
           if (userMsg.startsWith(PREFIX)) {
-              String text = userMsg.substring(PREFIX.length(), userMsg.length()); //String of message without prefix
-              String[] splitText = text.split("\\s"); //Splitting text with blank spaces as delimiter
-              if (splitText.length == 0)
-                return;
-              String commandKey = splitText[0];
-              System.out.println("Command Key = " + commandKey);
-              String[] args = Arrays.copyOfRange(splitText, 1, splitText.length); //String array that hold args after commandKey
-              System.out.println("Args = "+ Arrays.toString(args));
+            String text = userMsg.substring(PREFIX.length(),
+                userMsg.length()); //String of message without prefix
+            String[] splitText = text.split("\\s"); //Splitting text with blank spaces as delimiter
+            if (splitText.length == 0) {
+              return;
+            }
+            String commandKey = splitText[0];
+            System.out.println("Command Key = " + commandKey);
+            String[] args = Arrays.copyOfRange(splitText, 1,
+                splitText.length); //String array that hold args after commandKey
+            System.out.println("Args = " + Arrays.toString(args));
+
             switch (commandKey.toLowerCase()) {
 
               case "play":
@@ -52,15 +42,16 @@ public class Bot {
                   System.out.println("Resuming Music");
                   event.getMessage().getChannel()
                       .flatMap(channel -> channel.createMessage("Resuming Music!")).subscribe();
-                }
-                else {
+                } else {
                   String songToPlay = "";
-                  for (String i : args)
+                  for (String i : args) {
                     songToPlay = songToPlay.concat(i + " ");
+                  }
                   String finalSongToPlay = songToPlay;
-                  System.out.println("Playing: "+finalSongToPlay);
+                  System.out.println("Playing: " + finalSongToPlay);
                   event.getMessage().getChannel()
-                      .flatMap(channel -> channel.createMessage("Playing: "+ finalSongToPlay)).subscribe();
+                      .flatMap(channel -> channel.createMessage("Playing: " + finalSongToPlay))
+                      .subscribe();
                 }
                 break;
 
@@ -69,7 +60,6 @@ public class Bot {
                 event.getMessage().getChannel()
                     .flatMap(channel -> channel.createMessage("Pong!")).subscribe();
                 break;
-//            }
             }
           }
         });
