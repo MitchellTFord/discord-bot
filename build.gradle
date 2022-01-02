@@ -32,7 +32,6 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-logging'
 
 	implementation 'com.sedmelluq:lavaplayer:1.3.78'
-	implementation group: 'net.dv8tion', name: 'JDA', version: '1.2.1_106'
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -42,7 +41,6 @@ dependencies {
 	testImplementation 'io.projectreactor:reactor-test'
 	testImplementation "org.mockito:mockito-core:4.+"
 	testImplementation 'org.assertj:assertj-core:3.21.0'
-
 
 }
 
