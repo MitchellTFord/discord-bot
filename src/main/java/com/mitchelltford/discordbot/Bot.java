@@ -4,17 +4,18 @@ import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Mono;
 
 
 @Service
+@Profile("!test")
 public class Bot {
 
   private static final String PREFIX = "!";
 
   @Autowired
-  Bot(GatewayDiscordClient client) {
+  public Bot(GatewayDiscordClient client) {
     client.on(MessageCreateEvent.class)
         .subscribe(event -> {
 
