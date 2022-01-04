@@ -2,6 +2,7 @@ package com.mitchelltford.discordbot;
 
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
+import discord4j.core.object.entity.Message;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 @Service
 @Profile("!test")
@@ -26,6 +28,23 @@ public class Bot {
     // Register all the found commands
     this.commands = new HashMap<>();
     registerCommands(commands);
+
+    client
+        .on(MessageCreateEvent.class)
+        // Get the message associated with this event
+        .map(MessageCreateEvent::getMessage)
+        // Filter out messages sent by bots
+        .filter(message -> message.getAuthor().map(user -> !user.isBot()).orElse(false))
+        // Filter out messages that don't start with the command prefix
+        .filter(message -> message.getContent().startsWith(PREFIX))
+        // Handle commands
+        .flatMap(this::handleCommand)
+        .onErrorResume(
+            throwable -> {
+              log.error("An unhandled error occurred", throwable);
+              return Mono.empty();
+            })
+        .subscribe();
 
     client
         .on(MessageCreateEvent.class)
@@ -89,6 +108,10 @@ public class Bot {
                 }
               }
             });
+  }
+
+  private Mono<Void> handleCommand(Message message) {
+    return Mono.empty();
   }
 
   private void registerCommand(String key, Command command) {
