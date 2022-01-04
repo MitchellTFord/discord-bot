@@ -57,6 +57,7 @@ test {
 	finalizedBy jacocoTestReport
 }
 
+// makes sure tests are ran before generating a test report
 jacocoTestReport {
 	dependsOn test
 }
