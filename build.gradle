@@ -68,12 +68,11 @@ compileJava {
 
 spotless {
 	java {
-    	// Use the default importOrder configuration
-    	importOrder()
+		// Use the default importOrder configuration
+		importOrder()
 
-    	removeUnusedImports()
+		removeUnusedImports()
 
-    	googleJavaFormat()
-
+		googleJavaFormat()
   }
 }
