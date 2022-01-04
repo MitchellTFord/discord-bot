@@ -22,6 +22,6 @@ public class Ping implements Command {
 
   @Override
   public Mono<Void> execute(Message message, String args) {
-    return Mono.fromRunnable(() -> log.info("Pong!")).then();
+    return message.getChannel().flatMap(channel -> channel.createMessage("Pong!").then());
   }
 }
