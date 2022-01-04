@@ -61,19 +61,19 @@ jacocoTestReport {
 	dependsOn test
 }
 
-// spotless
+// Enforcing File Format
 compileJava {
 	dependsOn spotlessApply
 }
 
 spotless {
-  java {
-    // Use the default importOrder configuration
-    importOrder()
+	java {
+    	// Use the default importOrder configuration
+    	importOrder()
 
-    removeUnusedImports()
+    	removeUnusedImports()
 
-    googleJavaFormat()
+    	googleJavaFormat()
 
   }
 }
