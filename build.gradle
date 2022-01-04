@@ -3,6 +3,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 	id 'jacoco'
+	id 'com.diffplug.spotless' version "6.1.0"
 }
 
 group = 'com.mitchelltford'
@@ -24,7 +25,9 @@ repositories {
 
 dependencies {
 	// This dependency is here as a way to mitigate CVE-2021-44228 until a new version of Spring is released
-	implementation 'org.apache.logging.log4j:log4j-core:2.17.1'
+        implementation 'org.apache.logging.log4j:log4j-core:2.17.1'
+        
+	implementation "com.diffplug.spotless:spotless-plugin-gradle:6.1.0"
 
 	implementation 'com.discord4j:discord4j-core:3.2.1'
 
@@ -56,4 +59,20 @@ test {
 
 jacocoTestReport {
 	dependsOn test
+}
+
+// Enforcing File Format
+compileJava {
+	dependsOn spotlessApply
+}
+
+spotless {
+	java {
+		// Use the default importOrder configuration
+		importOrder()
+
+		removeUnusedImports()
+
+		googleJavaFormat()
+	}
 }
