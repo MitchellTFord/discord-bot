@@ -3,18 +3,30 @@ package com.mitchelltford.discordbot;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 @Service
 @Profile("!test")
+@Slf4j
 public class Bot {
 
   private static final String PREFIX = "!";
 
+  private final Map<String, Command> commands;
+
   @Autowired
-  public Bot(GatewayDiscordClient client) {
+  public Bot(GatewayDiscordClient client, List<? extends Command> commands) {
+
+    // Register all the found commands
+    this.commands = new HashMap<>();
+    registerCommands(commands);
+
     client
         .on(MessageCreateEvent.class)
         .subscribe(
@@ -77,5 +89,28 @@ public class Bot {
                 }
               }
             });
+  }
+
+  private void registerCommand(String key, Command command) {
+    if (this.commands.containsKey(key)) {
+      throw new RuntimeException(
+          String.format("Attempted to register command using duplicate key \"%s\"", key));
+    }
+    this.commands.put(key, command);
+  }
+
+  private void registerCommands(List<? extends Command> commands) {
+    for (Command command : commands) {
+      registerCommand(command.getName(), command);
+      for (String alias : command.getAliases()) {
+        registerCommand(alias, command);
+      }
+      log.debug(
+          "Registered \"{}\" command using it's name and {} aliases",
+          command.getName(),
+          command.getAliases().size());
+    }
+    log.info(
+        "Registered {} commands using a total of {} keys", commands.size(), this.commands.size());
   }
 }
