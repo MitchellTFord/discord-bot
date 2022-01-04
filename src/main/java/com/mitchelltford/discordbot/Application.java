@@ -1,4 +1,3 @@
-/* (C) 2021 */
 package com.mitchelltford.discordbot;
 
 import org.springframework.boot.SpringApplication;
