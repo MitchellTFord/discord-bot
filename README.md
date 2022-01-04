@@ -1,6 +1,15 @@
 # discord-bot
 
 ## Getting Started
+### Install Java (JDK) & Set-up Environmental Variables (Windows)
+```shell
+# Set Environmental Variables - JDK
+Navigate to environmental variables -> system variables (bottom pane) -> left-click path -> edit -> new -> paste in your path (example: C:\Program Files\Java\YOUR_JDK_HERE\bin)
+
+# Set JAVA_HOME
+Navigate back to System variables -> new -> variable name is JAVA_HOME -> variable value is C:\Program Files\Java\YOUR_JDK_HERE
+  ```
+
 ### Cloning this Repository
 ```shell
 # Clone to your machine
@@ -58,3 +67,6 @@ cd discord-bot
 * [Spring's Website](https://spring.io/)
 * [Baeldung's Guide to Dependency Injection using Spring](https://www.baeldung.com/spring-dependency-injection)
 * [Baeldung's Buide to Spring Boot](https://www.baeldung.com/spring-boot)
+
+### Java 17 Installation
+* [Download here - Oracle](https://www.oracle.com/java/technologies/downloads/\#jdk17-linux)
