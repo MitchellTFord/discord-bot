@@ -1,5 +1,6 @@
-package com.mitchelltford.discordbot;
+package com.mitchelltford.discordbot.commands;
 
+import com.mitchelltford.discordbot.DefaultCommand;
 import discord4j.core.object.entity.Message;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -8,16 +9,11 @@ import reactor.core.publisher.Mono;
 
 @Component
 @Slf4j
-public class Ping implements Command {
+public class Ping extends DefaultCommand {
 
-  @Override
-  public String getName() {
-    return "ping";
-  }
-
-  @Override
-  public List<String> getAliases() {
-    return List.of("p");
+  public Ping() {
+    name = "ping";
+    aliases = List.of("p");
   }
 
   @Override
