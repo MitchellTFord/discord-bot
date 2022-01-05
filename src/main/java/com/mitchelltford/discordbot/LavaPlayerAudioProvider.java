@@ -3,7 +3,7 @@ package com.mitchelltford.discordbot;
 import com.sedmelluq.discord.lavaplayer.track.playback.MutableAudioFrame;
 import org.springframework.stereotype.Component;
 
-//This class is used for generating a player to play track
+// This class is used for generating a player to play track
 @Component
 public class LavaPlayerAudioProvider extends LavaPlayer {
   private final MutableAudioFrame frame = new MutableAudioFrame();

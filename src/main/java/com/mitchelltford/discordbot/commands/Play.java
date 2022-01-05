@@ -29,7 +29,7 @@ public class Play extends DefaultCommand {
   public Mono<Void> execute(Message message, String args) {
 
     String botMessage = "Playing: " + args;
-    //**********Temporary Solution, will adjust later**************
+    // **********Temporary Solution, will adjust later**************
     Member member = message.getAuthorAsMember().block();
     if (member != null) {
       final VoiceState voiceState = member.getVoiceState().block();

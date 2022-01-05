@@ -11,10 +11,10 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.voice.AudioProvider;
 
-
-//This class is used to set up AudioPlayerManager and AudioPlayer, and basic functionalities for the Music bot
+// This class is used to set up AudioPlayerManager and AudioPlayer, and basic functionalities for
+// the Music bot
 public abstract class LavaPlayer extends AudioProvider {
-  //AudioPlayerManager is used for configuration settings modification
+  // AudioPlayerManager is used for configuration settings modification
   private final AudioPlayerManager playerManager;
   private final AudioPlayer player;
   private final LavaPlayerEventHandler eventHandler;
@@ -38,7 +38,7 @@ public abstract class LavaPlayer extends AudioProvider {
   public void skipTrack() {
     this.eventHandler.nextTrack();
   }
-  //To load a track and play it
+  // To load a track and play it
   public void loadAndPlay(String identifier, MessageChannel channel) {
     playerManager.loadItem(
         identifier,

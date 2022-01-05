@@ -8,7 +8,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 // Code are referenced from sedmelluq
 
-//This class is used for handling different event in the LavaPlayer
+// This class is used for handling different event in the LavaPlayer
 public class LavaPlayerEventHandler extends AudioEventAdapter {
   private final AudioPlayer player;
   private final BlockingQueue<AudioTrack> queue;
