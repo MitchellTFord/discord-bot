@@ -71,7 +71,7 @@ public class Bot {
               channel ->
                   channel.createMessage(String.format("Unrecognized command \"%s\"", key)).then());
     }
-
+    
     // Execute the command
     return command
         .execute(message, args)

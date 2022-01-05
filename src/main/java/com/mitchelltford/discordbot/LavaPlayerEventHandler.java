@@ -6,8 +6,9 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-//Code are referenced from sedmelluq
+// Code are referenced from sedmelluq
 
+//This class is used for handling different event in the LavaPlayer
 public class LavaPlayerEventHandler extends AudioEventAdapter {
   private final AudioPlayer player;
   private final BlockingQueue<AudioTrack> queue;
@@ -22,6 +23,7 @@ public class LavaPlayerEventHandler extends AudioEventAdapter {
       queue.offer(track);
     }
   }
+
   public void nextTrack() {
     player.startTrack(queue.poll(), false);
   }
@@ -32,5 +34,4 @@ public class LavaPlayerEventHandler extends AudioEventAdapter {
       nextTrack();
     }
   }
-
 }

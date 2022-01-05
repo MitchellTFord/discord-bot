@@ -15,19 +15,21 @@ import reactor.core.publisher.Mono;
 
 @Component
 @Slf4j
-public class Ping extends DefaultCommand {
+public class Play extends DefaultCommand {
 
   private final LavaPlayerAudioProvider player;
 
-  public Ping(LavaPlayerAudioProvider player) {
-    name = "ping";
-    aliases = List.of("p");
+  public Play(LavaPlayerAudioProvider player) {
+    name = "play";
+    aliases = List.of();
     this.player = player;
   }
 
   @Override
   public Mono<Void> execute(Message message, String args) {
 
+    String botMessage = "Playing: " + args;
+    //**********Temporary Solution, will adjust later**************
     Member member = message.getAuthorAsMember().block();
     if (member != null) {
       final VoiceState voiceState = member.getVoiceState().block();
@@ -40,10 +42,16 @@ public class Ping extends DefaultCommand {
         }
       }
     }
-    String url = "https://youtu.be/AULG4MoYxQk";
     MessageChannel messageChannel = message.getChannel().block();
-    player.loadAndPlay(url, messageChannel);
+    player.loadAndPlay(args, messageChannel);
 
-    return message.getChannel().flatMap(channel -> channel.createMessage("Pong!").then());
+    return message
+        .getAuthorAsMember()
+        .flatMap(Member::getVoiceState)
+        .flatMap(VoiceState::getChannel)
+        .flatMap(channel -> channel.join())
+        .flatMap(
+            unused -> message.getChannel().flatMap(channel -> channel.createMessage(botMessage)))
+        .then();
   }
 }
