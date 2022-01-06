@@ -21,6 +21,8 @@ public class Bot {
 
   private static final String PREFIX = "!";
 
+  private static final Pattern COMMAND_PATTERN = Pattern.compile("^(\\w+)(?:\\s(.*))?$");
+
   private final Map<String, Command> commands;
 
   @Autowired
@@ -50,7 +52,7 @@ public class Bot {
 
   private Mono<Void> handleCommand(Message message) {
     String contentWithoutPrefix = message.getContent().substring(PREFIX.length());
-    Matcher matcher = Pattern.compile("^(\\w+)(?:\\s(.*))?$").matcher(contentWithoutPrefix);
+    Matcher matcher = COMMAND_PATTERN.matcher(contentWithoutPrefix);
     if (!matcher.find()) {
       // No command key in message, do nothing
       return Mono.empty();
