@@ -12,10 +12,14 @@ import reactor.core.publisher.Mono;
 
 @Component
 @Slf4j
+
 public class Stop extends DefaultCommand {
 
   private final LavaPlayerAudioProvider player;
 
+  /**
+   * Default constructor to initialize player object
+   */
   public Stop(LavaPlayerAudioProvider player) {
     name = "stop";
     aliases = List.of();
@@ -23,6 +27,9 @@ public class Stop extends DefaultCommand {
   }
 
   @Override
+  /**
+   * stop the songs in the queue and disconnect the bot
+   */
   public Mono<Void> execute(Message message, String args) {
     player.stopPlayBack();
     return message

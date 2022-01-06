@@ -15,10 +15,17 @@ import reactor.core.publisher.Mono;
 
 @Component
 @Slf4j
+/**
+ * This is a command class use for skipping track in queue
+ * @author Liang & Nick
+ */
 public class Play extends DefaultCommand {
 
   private final LavaPlayerAudioProvider player;
 
+  /**
+   * Default constructor to initialize player object
+   */
   public Play(LavaPlayerAudioProvider player) {
     name = "play";
     aliases = List.of();
@@ -26,6 +33,9 @@ public class Play extends DefaultCommand {
   }
 
   @Override
+  /**
+   * load the song into the queue and play it
+   */
   public Mono<Void> execute(Message message, String args) {
 
     String botMessage = "Playing: " + args;

@@ -10,10 +10,17 @@ import reactor.core.publisher.Mono;
 
 @Component
 @Slf4j
+/**
+ * This is a command class use for skipping track in queue
+ * @author Liang
+ */
 public class Skip extends DefaultCommand {
 
   private final LavaPlayerAudioProvider player;
 
+  /**
+   * Default constructor to initialize player object
+   */
   public Skip(LavaPlayerAudioProvider player) {
     name = "skip";
     aliases = List.of();
@@ -21,6 +28,9 @@ public class Skip extends DefaultCommand {
   }
 
   @Override
+  /**
+   * This function is used to skip a song
+   */
   public Mono<Void> execute(Message message, String args) {
     player.skipTrack();
     return message.getChannel().flatMap(channel -> channel.createMessage("Song Skipped.").then());
