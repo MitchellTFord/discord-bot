@@ -83,6 +83,7 @@ public abstract class LavaPlayer extends AudioProvider {
             this.channel.createMessage("Load Failed For :" + identifier).subscribe();
           }
         });
+    return null;
   }
 
   public abstract boolean provide();
