@@ -6,7 +6,6 @@ import discord4j.core.object.VoiceState;
 import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.channel.MessageChannel;
-import discord4j.core.object.entity.channel.VoiceChannel;
 import discord4j.core.spec.VoiceChannelJoinSpec;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -17,15 +16,14 @@ import reactor.core.publisher.Mono;
 @Slf4j
 /**
  * This is a command class use for skipping track in queue
+ *
  * @author Liang & Nick
  */
 public class Play extends DefaultCommand {
 
   private final LavaPlayerAudioProvider player;
 
-  /**
-   * Default constructor to initialize player object
-   */
+  /** Default constructor to initialize player object */
   public Play(LavaPlayerAudioProvider player) {
     name = "play";
     aliases = List.of();
@@ -33,25 +31,11 @@ public class Play extends DefaultCommand {
   }
 
   @Override
-  /**
-   * load the song into the queue and play it
-   */
+  /** load the song into the queue and play it */
   public Mono<Void> execute(Message message, String args) {
 
     String botMessage = "Playing: " + args;
-    // **********Temporary Solution, will adjust later**************
-    Member member = message.getAuthorAsMember().block();
-    if (member != null) {
-      final VoiceState voiceState = member.getVoiceState().block();
-      if (voiceState != null) {
-        final VoiceChannel channel = voiceState.getChannel().block();
-        if (channel != null) {
-          // join returns a VoiceConnection which would be required if we were
-          // adding disconnection features, but for now we are just ignoring it.
-          channel.join(VoiceChannelJoinSpec.builder().provider(player).build()).block();
-        }
-      }
-    }
+
     MessageChannel messageChannel = message.getChannel().block();
     player.loadAndPlay(args, messageChannel);
 
@@ -59,7 +43,7 @@ public class Play extends DefaultCommand {
         .getAuthorAsMember()
         .flatMap(Member::getVoiceState)
         .flatMap(VoiceState::getChannel)
-        .flatMap(channel -> channel.join())
+        .flatMap(channel -> channel.join(VoiceChannelJoinSpec.builder().provider(player).build()))
         .flatMap(
             unused -> message.getChannel().flatMap(channel -> channel.createMessage(botMessage)))
         .then();
