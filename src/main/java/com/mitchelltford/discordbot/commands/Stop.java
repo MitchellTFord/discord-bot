@@ -12,6 +12,11 @@ import reactor.core.publisher.Mono;
 
 @Component
 @Slf4j
+/**
+ * This is a command class to stop playback and have the bot leave the voice channel
+ *
+ * @author Nick
+ */
 public class Stop extends DefaultCommand {
 
   private final LavaPlayerAudioProvider player;
