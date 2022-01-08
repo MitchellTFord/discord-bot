@@ -12,8 +12,7 @@ import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.voice.AudioProvider;
 
 /**
- * This class is used to set up AudioPlayerManager and AudioPlayer, and basic functionalities for
- * the Music bot referenced from sedmelluq
+ * Represents the AudioPlayerManager for LavaPlayer
  *
  * @author Liang & Nick
  */
@@ -34,7 +33,7 @@ public abstract class LavaPlayer extends AudioProvider {
     player.addListener(eventHandler);
   }
 
-  /** This is a function to access the AudioPlayer object */
+  /** Return the AudioPlayer object */
   public AudioPlayer getPlayer() {
     return player;
   }
@@ -56,29 +55,30 @@ public abstract class LavaPlayer extends AudioProvider {
         new AudioLoadResultHandler() {
           MessageChannel channel;
 
-          @Override
           /** Add a song to the queue */
+          @Override
           public void trackLoaded(AudioTrack track) {
             eventHandler.queue(track);
             channel.createMessage("Added to queue:").subscribe();
           }
 
-          @Override
           /** Add a play list to the queue */
+          @Override
           public void playlistLoaded(AudioPlaylist playlist) {
             for (AudioTrack track : playlist.getTracks()) {
               eventHandler.queue(track);
             }
           }
 
-          @Override
           /** Notify the user that we've got nothing */
+          @Override
           public void noMatches() {
             this.channel.createMessage("No Matches For :" + identifier).subscribe();
           }
 
-          @Override
+
           /** Notify the user that everything exploded */
+          @Override
           public void loadFailed(FriendlyException throwable) {
             this.channel.createMessage("Load Failed For :" + identifier).subscribe();
           }

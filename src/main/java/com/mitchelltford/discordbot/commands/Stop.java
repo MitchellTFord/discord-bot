@@ -10,13 +10,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
-@Component
-@Slf4j
 /**
- * This is a command class to stop playback and have the bot leave the voice channel
+ *  Represents the stop command
  *
  * @author Nick
  */
+@Component
+@Slf4j
 public class Stop extends DefaultCommand {
 
   private final LavaPlayerAudioProvider player;
@@ -28,8 +28,9 @@ public class Stop extends DefaultCommand {
     this.player = player;
   }
 
+
+  /** Stop the songs in the queue and disconnect the bot */
   @Override
-  /** stop the songs in the queue and disconnect the bot */
   public Mono<Void> execute(Message message, String args) {
     player.stopPlayBack();
     return message

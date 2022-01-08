@@ -12,13 +12,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
-@Component
-@Slf4j
 /**
- * This is a command class use for skipping track in queue
+ *  Represents the play command
  *
  * @author Liang & Nick
  */
+@Component
+@Slf4j
 public class Play extends DefaultCommand {
 
   private final LavaPlayerAudioProvider player;
@@ -30,8 +30,9 @@ public class Play extends DefaultCommand {
     this.player = player;
   }
 
+
+  /** Load the song into the queue and play it */
   @Override
-  /** load the song into the queue and play it */
   public Mono<Void> execute(Message message, String args) {
 
     String botMessage = "Playing: " + args;

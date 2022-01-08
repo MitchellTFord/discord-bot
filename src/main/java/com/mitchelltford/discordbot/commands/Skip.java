@@ -8,13 +8,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
-@Component
-@Slf4j
 /**
- * This is a command class use for skipping track in queue
+ *  Represents the skip command
  *
  * @author Liang
  */
+@Component
+@Slf4j
 public class Skip extends DefaultCommand {
 
   private final LavaPlayerAudioProvider player;
@@ -26,8 +26,8 @@ public class Skip extends DefaultCommand {
     this.player = player;
   }
 
+  /** To skip the current song in the queue */
   @Override
-  /** This function is used to skip a song */
   public Mono<Void> execute(Message message, String args) {
     player.skipTrack();
     return message.getChannel().flatMap(channel -> channel.createMessage("Song Skipped.").then());
