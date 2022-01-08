@@ -8,7 +8,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
- * Represents the event handling for LavaPlayer, referenced from sedmelluq
+ * Represents the event handling for LavaPlayer
  *
  * @author Liang & Nick
  */

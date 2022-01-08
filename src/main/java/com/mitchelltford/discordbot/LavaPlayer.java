@@ -20,8 +20,9 @@ public abstract class LavaPlayer extends AudioProvider {
 
   /** AudioPlayerManager is used for configuration settings modification */
   private final AudioPlayerManager playerManager;
-
+  /** AudioPlayer is used for playing the music */
   private final AudioPlayer player;
+  /** LavaPlayerEventHandler is used for handing different cases */
   private final LavaPlayerEventHandler eventHandler;
 
   /** Default constructor to initialize the AudioPlayer & EventHandler */
