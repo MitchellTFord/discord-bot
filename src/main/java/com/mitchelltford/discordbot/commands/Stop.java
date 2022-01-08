@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 /**
- *  Represents the stop command
+ * Represents the stop command
  *
  * @author Nick
  */
@@ -27,7 +27,6 @@ public class Stop extends DefaultCommand {
     aliases = List.of();
     this.player = player;
   }
-
 
   /** Stop the songs in the queue and disconnect the bot */
   @Override

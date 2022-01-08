@@ -16,7 +16,6 @@ public class LavaPlayerAudioProvider extends LavaPlayer {
     frame.setBuffer(getBuffer());
   }
 
-
   /** AudioPlayer writes audio data to its AudioFrame */
   @Override
   public boolean provide() {

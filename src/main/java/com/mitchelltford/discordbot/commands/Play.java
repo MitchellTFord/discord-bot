@@ -5,7 +5,6 @@ import com.mitchelltford.discordbot.LavaPlayerAudioProvider;
 import discord4j.core.object.VoiceState;
 import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.Message;
-import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.spec.VoiceChannelJoinSpec;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 /**
- *  Represents the play command
+ * Represents the play command
  *
  * @author Liang & Nick
  */
@@ -30,15 +29,12 @@ public class Play extends DefaultCommand {
     this.player = player;
   }
 
-
   /** Load the song into the queue and play it */
   @Override
   public Mono<Void> execute(Message message, String args) {
 
     String botMessage = "Playing: " + args;
-
-    MessageChannel messageChannel = message.getChannel().block();
-    player.loadAndPlay(args, messageChannel);
+    player.loadAndPlay(args);
 
     return message
         .getAuthorAsMember()

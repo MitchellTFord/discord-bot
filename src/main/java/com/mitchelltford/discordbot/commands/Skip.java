@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 /**
- *  Represents the skip command
+ * Represents the skip command
  *
  * @author Liang
  */
