@@ -6,6 +6,7 @@ public abstract class DefaultCommand implements Command {
 
   protected String name;
   protected List<String> aliases;
+  protected String description;
 
   @Override
   public String getName() {
@@ -15,5 +16,10 @@ public abstract class DefaultCommand implements Command {
   @Override
   public List<String> getAliases() {
     return aliases;
+  }
+
+  @Override
+  public String getDescription() {
+    return description;
   }
 }

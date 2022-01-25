@@ -12,5 +12,7 @@ public interface Command {
     return Collections.emptyList();
   }
 
+  String getDescription();
+
   Mono<Void> execute(Message message, String args);
 }

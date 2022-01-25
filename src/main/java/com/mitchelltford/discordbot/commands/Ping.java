@@ -14,6 +14,7 @@ public class Ping extends DefaultCommand {
   public Ping() {
     name = "ping";
     aliases = List.of("p");
+    description = "Bot responds with \"pong\"";
   }
 
   @Override
