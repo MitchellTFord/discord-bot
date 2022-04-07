@@ -29,7 +29,7 @@ dependencies {
         
 	implementation "com.diffplug.spotless:spotless-plugin-gradle:6.4.2"
 
-	implementation 'com.discord4j:discord4j-core:3.2.1'
+	implementation 'com.discord4j:discord4j-core:3.2.2'
 
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation 'org.springframework.boot:spring-boot-starter-logging'
